@@ -2,7 +2,7 @@
     <div>
         <div class="w-full bg-gray-300 h-screen">
             <div class="container mx-auto h-full flex justify-center items-center">
-                <div class="w-full md:w-1/3">
+                <div class="w-full mx-10 md:w-1/3">
                     <div class="text-center mb-4">
                         <p class="text-blue font-semibold text-3xl font-mono">Wallet | <span class="font-base text-base"> Beta</span> </p>
                     </div>

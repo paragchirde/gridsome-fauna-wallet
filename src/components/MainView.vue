@@ -66,7 +66,7 @@
         <div class="mt-2">
             <p class="text-xs text-gray-600">Created At: {{ moment(wallet.data.created_at).format('MMMM Do YYYY, h:mm:ss a') }} </p>
             <p class="text-base text-gray-900">Bank: {{ wallet.data.bank }} </p>
-            <p class="text-base text-gray-900">Initial Amount: {{ wallet.data.amount }} </p>
+            <p class="text-base text-gray-900">Initial Amount: {{ parseInt(wallet.data.amount).toLocaleString('en') }} </p>
             <!-- <p>Your Tx: {{ walletTrasnactions }}</p> -->
             <div class="flex flex-wrap">
                 <div class="w-1/2 md:w-1/4 p-2" v-for="(tx, i) in walletTrasnactions.reverse()" :key="i">
@@ -155,17 +155,10 @@ export default {
         },
         updateWallet(){
             if(this.transactionType == 'expenditure' || this.transactionType == 'transfer') {
-                console.log(1)
-                console.log(this.wallet.data.total)
-                console.log(this.transactionAmount)
                 this.temp = this.wallet.data.total - this.transactionAmount
-                console.log(this.temp)
             } else {
-                console.log(2)
                 this.temp = parseInt(this.wallet.data.total) + parseInt(this.transactionAmount)
             }
-            console.log(this.temp)
-            console.log(parseInt(this.temp))
             client.query(
                     q.Update(
                         q.Ref(q.Collection('wallets'), this.wallet.ref.id),

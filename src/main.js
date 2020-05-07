@@ -2,15 +2,14 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import Vuesax from 'vuesax'
 import VeeValidate from 'vee-validate'
-require('~/main.css')
-
 import 'vuesax/dist/vuesax.css'
 import 'material-icons/iconfont/material-icons.css';
+require('~/main.css')
 Vue.use(Vuesax)
 Vue.use(VeeValidate)
 
 
-import { userStateMixin } from './Mixins/UserStateMixin.js'
+// import { userStateMixin } from './Mixins/UserStateMixin.js'
 export default function(Vue, { router, head, isClient, appOptions }) {
 
     const authroutes = ['/'];
