@@ -5,12 +5,14 @@ import VeeValidate from 'vee-validate'
 require('~/main.css')
 
 import 'vuesax/dist/vuesax.css'
+import 'material-icons/iconfont/material-icons.css';
 Vue.use(Vuesax)
 Vue.use(VeeValidate)
 
 
+import { userStateMixin } from './Mixins/UserStateMixin.js'
 export default function(Vue, { router, head, isClient, appOptions }) {
-    // Set default layout as a global component
+
     const authroutes = ['/'];
     router.beforeEach((to, from, next) => {
         if (authroutes.includes(to.path)) {
@@ -33,6 +35,8 @@ export default function(Vue, { router, head, isClient, appOptions }) {
         state: {
             user: [],
             id: '',
+            wallets: [],
+            transactions: []
         },
         mutations: {
             setUser(state, data) {
@@ -40,8 +44,26 @@ export default function(Vue, { router, head, isClient, appOptions }) {
             },
             setUserId(state, user_id) {
                 state.id = user_id
+            },
+            ADD_WALLET(state, data) {
+                state.wallets.unshift(data)
+            },
+            ADD_TRANSACTION(state, data) {
+                state.transactions.unshift(data)
+            },
+            UPDATE_WALLET(state, data) {
+                state.wallets.find(w => {
+                    if (w.ref.id == data.id) {
+                        w.data.total = data.amount
+                        console.log('ok')
+                    }
+                })
             }
         }
     })
+
+    // new Vue({
+    //     mixins: [userStateMixin],
+    // })
 
 }

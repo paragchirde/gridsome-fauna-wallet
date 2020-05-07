@@ -125,7 +125,7 @@ export default {
                             // this.$store.state.user  = res.data
                             this.$store.commit("setUser", res.data);
                             this.$store.commit("setUserId", res.ref.value.id);
-                            localStorage.setItem('user', JSON.stringify(res.data))
+                            // localStorage.setItem('user', JSON.stringify(res.data))
                             this.$vs.loading.close()
                             this.$router.push({path:'/'})
                         })
