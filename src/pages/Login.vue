@@ -54,12 +54,19 @@
 const faunadb = require('faunadb')
 const client = new faunadb.Client({secret: process.env.GRIDSOME_FAUNA_SECRET})
 const q = faunadb.query
-export default {
+export default {   
     data(){
         return {
             email: '',
             password: '',
             token: ''
+        }
+    },
+    created(){
+        if(process.isClient){
+            if(localStorage.getItem('token') != null){
+                this.$router.push({path: '/'})
+            }
         }
     },
     methods: {
